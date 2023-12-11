@@ -17,8 +17,7 @@ const bodyColor = function (color) {
 const numberWidth = function (width) {
   document.querySelector(".number").style.width = width;
 };
-document.querySelector(".check").addEventListener("click", function () {
-  const guess = Number(document.querySelector(".guess").value);
+const guessingNumber = function (guess) {
   if (!guess) {
     displayMessage("⛔ No Number!");
   } else if (guess === secretNumber) {
@@ -41,6 +40,20 @@ document.querySelector(".check").addEventListener("click", function () {
       displayMessage("💥 You have lost!");
       scoreSetter(0);
     }
+  }
+};
+const convertIntoNumber = function (guess) {
+  const guessing = Number(document.querySelector(".guess").value);
+  return guessing;
+};
+document.querySelector(".check").addEventListener("click", function () {
+  const guess = convertIntoNumber();
+  guessingNumber(guess);
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    const guess = convertIntoNumber();
+    guessingNumber(guess);
   }
 });
 document.querySelector(".again").addEventListener("click", function () {
